@@ -3,6 +3,7 @@ import Helper from './Helper';
 import Bot from './Bot';
 import User from './User';
 import Lang from './Lang';
+import { configCommands } from './_configCommands';
 
 /**
  * Класс WebHook
@@ -20,7 +21,7 @@ export default class WebHook {
     // создаем объект языковых настроек
     this.lang = new Lang(this.user.lang);
     // получаем набор команд с шаблонами
-    this.linkCommands = config.linkCommands;
+    this.linkCommands = configCommands.linkCommands;
     // запускаем роутер
     this.route();
   }
