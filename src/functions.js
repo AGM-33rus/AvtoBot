@@ -6,12 +6,16 @@ export function getMe() {
 }
 
 export function getWebHookInfo() {
-  const response = UrlFetchApp.fetch(`${config.apiUrl}${config.token}/getWebHookInfo`);
+  const response = UrlFetchApp.fetch(
+    `${config.apiUrl}${config.token}/getWebHookInfo`
+  );
   Logger.log(response.getContentText());
 }
 
 export function setWebHook() {
-  const response = UrlFetchApp.fetch(`${config.apiUrl}${config.token}/setWebHook?url=${config.webUrl}`);
+  const response = UrlFetchApp.fetch(
+    `${config.apiUrl}${config.token}/setWebHook?url=${config.webUrl}`
+  );
   Logger.log(response.getContentText());
 }
 

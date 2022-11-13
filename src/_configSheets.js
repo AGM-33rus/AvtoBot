@@ -7,8 +7,9 @@ export const configSheets = {
       name: 2,
       userName: 3,
       lang: 4,
-      created_at: 5,
-      updated_at: 6,
+      ban: 5,
+      created_at: 6,
+      updated_at: 7,
     },
   },
 };

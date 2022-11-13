@@ -76,32 +76,52 @@ export default class WebHook {
         // если это ответ на сообщение
         if (Helper.isSet(this.bot.data.message.reply_to_message)) {
           // получаем текст из отвечаемого сообщения
-          const textT = Helper.isSet(this.bot.data.message.reply_to_message.text)
+          const textT = Helper.isSet(
+            this.bot.data.message.reply_to_message.text
+          )
             ? this.bot.data.message.reply_to_message.text // текстовое сообщение
             : this.bot.data.message.reply_to_message.caption; // медиа сообщение
           // если ответ самому себе
-          if (this.user.uid === this.bot.data.message.reply_to_message.from.id) {
+          if (
+            this.user.uid === this.bot.data.message.reply_to_message.from.id
+          ) {
             // уведомляем админа, что ответ самому себе
-            Bot.sendMessage(config.botAdmin, this.lang.getParam('admin.answer.self'));
+            Bot.sendMessage(
+              config.botAdmin,
+              this.lang.getParam('admin.answer.self')
+            );
           } // если ответ на сообщение бота
           else if (this.isReplyBot() && !/^USER_ID::[\d]+::/.test(textT)) {
             // уведомляем, что ответ боту
-            Bot.sendMessage(config.botAdmin, this.lang.getParam('admin.answer.bot'));
+            Bot.sendMessage(
+              config.botAdmin,
+              this.lang.getParam('admin.answer.bot')
+            );
           } else {
             // получить id пользователя из сообщения
             const matches = textT.match(/^USER_ID::(\d+)::/);
             // проверяем
             if (matches) {
               // все нормально отправляем копию сообщения пользователю
-              Bot.copyMessage(matches[1], config.botAdmin, this.bot.data.message.message_id);
+              Bot.copyMessage(
+                matches[1],
+                config.botAdmin,
+                this.bot.data.message.message_id
+              );
             } else {
               // уведомляем, что не удалось направить сообщение пользователю
-              Bot.sendMessage(config.botAdmin, this.lang.getParam('admin.answer.error.send'));
+              Bot.sendMessage(
+                config.botAdmin,
+                this.lang.getParam('admin.answer.error.send')
+              );
             }
           }
         } else {
           // уведомление нажать кнопку ответить
-          Bot.sendMessage(config.botAdmin, this.lang.getParam('admin.answer.button.reply'));
+          Bot.sendMessage(
+            config.botAdmin,
+            this.lang.getParam('admin.answer.button.reply')
+          );
         }
       } else {
         // Если это написал пользователь то отправляем копию админу
@@ -163,7 +183,12 @@ export default class WebHook {
     // если это текстовое сообщение
     if (typeMessage === 'text') {
       // формируем доп с текстом
-      data.text = dop + Bot.prepareMessageWithEntities(this.bot.getMessageText(), this.bot.getEntities());
+      data.text =
+        dop +
+        Bot.prepareMessageWithEntities(
+          this.bot.getMessageText(),
+          this.bot.getEntities()
+        );
       // переопределяем метод
       data.method = 'sendMessage';
     } else {
@@ -175,7 +200,8 @@ export default class WebHook {
         data.longitude = this.bot.data.message.location.longitude;
         data.latitude = this.bot.data.message.location.latitude;
         data.live_period = this.bot.data.message.location.live_period;
-        data.horizontal_accuracy = this.bot.data.message.location.horizontal_accuracy;
+        data.horizontal_accuracy =
+          this.bot.data.message.location.horizontal_accuracy;
       } else {
         // запоняем файлом
         data[typeMessage] = this.bot.getMessageFileId();
@@ -183,7 +209,12 @@ export default class WebHook {
       // если не надо доп, значит описание не пустое
       if (!dopSend) {
         // дополняем описание
-        data.caption = dop + Bot.prepareMessageWithEntities(this.bot.getMessageText(), this.bot.getEntities());
+        data.caption =
+          dop +
+          Bot.prepareMessageWithEntities(
+            this.bot.getMessageText(),
+            this.bot.getEntities()
+          );
       }
       // переопределяем метод
       data.method = `send${WebHook.prepareMethod(typeMessage)}`;

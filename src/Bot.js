@@ -55,7 +55,14 @@ export default class Bot {
    */
   getMessageText() {
     // медиа объекты с возможным описанием
-    const medias = ['audio', 'document', 'photo', 'animation', 'video', 'voice'];
+    const medias = [
+      'audio',
+      'document',
+      'photo',
+      'animation',
+      'video',
+      'voice',
+    ];
     // если это текствое сообщение
     if (Helper.isSet(this.data.message.text)) {
       // вернем текст сообщения
@@ -169,7 +176,8 @@ export default class Bot {
         // добавляем все что между форматированием
         if (entity.offset > 0) {
           // определяем начало
-          const start = idx === 0 ? 0 : arr[idx - 1].offset + arr[idx - 1].length;
+          const start =
+            idx === 0 ? 0 : arr[idx - 1].offset + arr[idx - 1].length;
           // определяем длину
           const length = entity.offset - start;
           // добавляем
@@ -207,7 +215,10 @@ export default class Bot {
         prepareText += charts;
       });
       // добавляем остатки текста если такие есть
-      prepareText += text.substr(entities[entities.length - 1].offset + entities[entities.length - 1].length);
+      prepareText += text.substr(
+        entities[entities.length - 1].offset +
+          entities[entities.length - 1].length
+      );
       // возвращаем результат
       return prepareText;
     }
@@ -255,6 +266,11 @@ export default class Bot {
    * Запрос в Телеграм
    */
   static query(data) {
-    return JSON.parse(UrlFetchApp.fetch(`${config.apiUrl}${config.token}/`, data).getContentText());
+    return JSON.parse(
+      UrlFetchApp.fetch(
+        `${config.apiUrl}${config.token}/`,
+        data
+      ).getContentText()
+    );
   }
 }

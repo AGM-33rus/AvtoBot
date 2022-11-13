@@ -38,7 +38,9 @@ export default class User {
    */
   save() {
     // определяем таблицу и в ней лист
-    const sheet = SpreadsheetApp.openById(config.sheet).getSheetByName(configSheets.db.users.table);
+    const sheet = SpreadsheetApp.openById(config.sheet).getSheetByName(
+      configSheets.db.users.table
+    );
     // получаем номер строки или null
     const row = User.getRowByUid(sheet, this.uid);
     // получаем текущую дату-время
@@ -48,14 +50,26 @@ export default class User {
       // обновляем имя пользователя
       sheet.getRange(row, configSheets.db.users.name).setValue(this.name);
       // обновляем username
-      sheet.getRange(row, configSheets.db.users.userName).setValue(this.userName);
+      sheet
+        .getRange(row, configSheets.db.users.userName)
+        .setValue(this.userName);
       // обновляем lang
       sheet.getRange(row, configSheets.db.users.lang).setValue(this.lang);
       // обновляем дату-время последнего посещения
-      sheet.getRange(row, configSheets.db.users.updated_at).setValue(date.toString());
+      sheet
+        .getRange(row, configSheets.db.users.updated_at)
+        .setValue(date.toString());
     } else {
       // если строка не найдена, значит добавляем пользователя в лист
-      sheet.appendRow([this.uid, this.name, this.userName, this.lang, date.toString(), date.toString()]);
+      sheet.appendRow([
+        this.uid,
+        this.name,
+        this.userName,
+        this.lang,
+        0,
+        date.toString(),
+        date.toString(),
+      ]);
     }
   }
 }
