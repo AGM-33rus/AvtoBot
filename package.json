@@ -21,7 +21,8 @@
     "google-workspace"
   ],
   "dependencies": {
-    "apps-script-oauth2": "github:googleworkspace/apps-script-oauth2"
+    "apps-script-oauth2": "github:googleworkspace/apps-script-oauth2",
+    "sheetquery": "^1.4.0"
   },
   "devDependencies": {
     "@babel/core": "^7.19.1",
@@ -48,9 +49,9 @@
     "gas-lib": "^2.0.4",
     "gas-webpack-plugin": "^2.3.0",
     "jest": "^29.0.3",
+    "loader-utils": "2.0.3",
     "npm-watch": "^0.11.0",
     "prettier": "^2.7.1",
-    "sheetquery": "^1.4.0",
     "terser-webpack-plugin": "^5.3.6",
     "webpack": "^5.74.0",
     "webpack-cli": "^4.10.0"

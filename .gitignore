@@ -13,6 +13,7 @@ build/
 .idea/
 my_notes.txt
 package-lock.json
+.clasp.json
 
 # OS generated files
 .DS_Store
@@ -22,3 +23,5 @@ package-lock.json
 .Trashes
 ehthumbs.db
 Thumbs.db
+FUNCTIONS.md
+scopes.md

@@ -160,6 +160,14 @@ export default class WebHook {
     Bot.sendMessage(this.user.uid, text);
   }
 
+  support() {
+    const query = this.sheetQuery()
+      .from('Transactions')
+      .where((row) => row.Category === 'Shops');
+
+    // query.getRows() => [{ Amount: 95, Category: 'Shops', Business: 'Walmart'}]
+  }
+
   /**
    * Отправляем копию
    */

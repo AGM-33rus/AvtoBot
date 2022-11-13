@@ -1,3 +1,4 @@
+import { sheetQuery } from 'sheetquery';
 import { config } from './config';
 import { configSheets } from './_configSheets';
 
@@ -17,6 +18,7 @@ export default class User {
     this.lang = userData.lang;
     // username если есть
     this.userName = userData.userName;
+    this.query = sheetQuery();
     // сохраняем данные
     this.save();
   }
