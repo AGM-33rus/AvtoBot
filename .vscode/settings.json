@@ -2,8 +2,13 @@
   "[javascript]": {
     "editor.formatOnSave": false
   },
+  "scss.validate": false,
+  "css.validate": false,
+  "less.validate": false,
+
   "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": true
+    "source.fixAll.eslint": true,
+    "source.fixAll.stylelint": true
   },
   "workbench.colorCustomizations": {
     "xterminal.background": "#282936",
